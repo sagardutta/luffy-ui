@@ -10,9 +10,9 @@ class SearchResults extends Component{
       return(<span key={tag}>{tag} </span>);
     });
     return (
-        <div  className="col-md-4" key={result.id}>
+        <div  className="col-md-4" key={result._id}>
         <div>
-        <image src={result.source} width="304" height="236" />
+        <image src={result.image} width="304" height="236" />
         </div>
         <div>Title:: {result.name}</div>
         <div>tags:: {tags}</div>

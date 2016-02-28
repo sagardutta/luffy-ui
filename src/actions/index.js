@@ -3,7 +3,7 @@ import axios from 'axios';
 export const SEARCH_TAG= 'SEARCH_TAG';
 
 
-const ROOT_URL = `http://www.mocky.io/v2/56d28b8b0f000048004bcdcd`;
+const ROOT_URL = `http://pacific-shore-18608.herokuapp.com/api`;
 
 export  function searchTag(tag){
   const url = `${ROOT_URL}?tag=${tag}`;
