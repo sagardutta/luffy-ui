@@ -18,8 +18,12 @@ Built on top of
 
 Deployed on
 
-* [AWS S3][ad-search-help.s3-website-ap-southeast-1.amazonaws.com]
+* [AWS S3][aws-s3]
 
 Talks to
 
-* [Ad Search API][https://pacific-shore-18608.herokuapp.com/api]
+* [Ad Search API][ad-search-heroku]
+
+
+[aws-s3]:http://ad-search-help.s3-website-ap-southeast-1.amazonaws.com/
+[ad-search-heroku]:https://pacific-shore-18608.herokuapp.com/api
