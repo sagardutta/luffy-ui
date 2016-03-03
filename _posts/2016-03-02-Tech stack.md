@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Welcome to the project"
+title:  "TechStack"
 date:   2016-03-02 16:15:49 +0700
 categories: intro, techstack
 ---
