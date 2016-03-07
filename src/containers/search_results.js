@@ -7,15 +7,24 @@ class SearchResults extends Component{
 
   renderResult(result){
     var tags = result.tags.map(function(tag){
-      return(<span key={tag}>{tag} </span>);
+      return(<span key={tag}>{tag}, </span>);
     });
     return (
         <div  className="col-md-4" key={result._id}>
         <div>
-        <image src={result.image} width="304" height="236" />
+          <image src={result.image} width="320" height="320" />
         </div>
-        <div>Title:: {result.name}</div>
-        <div>tags:: {tags}</div>
+
+        <div> <b>minAge</b> :: {result.minAge}</div>
+        <div> <b>maxAge </b> :: {result.maxAge}</div>
+        <div> <b> applicationProcess </b>:: {result.applicationProcess}</div>
+        <div> <b>selectionProcess </b>:: {result.selectionProcess}</div>
+        <div> <b>source </b> :: {result.source}</div>
+        <div> <b>lastDate</b>:: {result.lastDate} </div>
+        <div> <b>notificationDate</b>:: {result.notificationDate} </div>
+        <div> <b>linkToSource</b>:: {result.linkToSource} </div>
+        <div> <b>contactDetails</b>:: {result.contactDetails} </div>
+        <div><b>tags</b>:: {tags}</div>
         </div>
     );
   }
