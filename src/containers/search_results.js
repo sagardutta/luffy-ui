@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import Time from 'react-time';
 
 
 class SearchResults extends Component{
@@ -10,34 +11,59 @@ class SearchResults extends Component{
       return(<span key={tag}>{tag}, </span>);
     });
     return (
-        <div  className="col-md-4" key={result._id}>
-        <div>
-          <image src={result.image} width="320" height="320" />
-        </div>
+        // <div  className="col-md-4" key={result._id}>
+        <tr key={result._id}>
 
-        <div> <b>minAge</b> :: {result.minAge}</div>
-        <div> <b>maxAge </b> :: {result.maxAge}</div>
-        <div> <b> applicationProcess </b>:: {result.applicationProcess}</div>
-        <div> <b>selectionProcess </b>:: {result.selectionProcess}</div>
-        <div> <b>source </b> :: {result.source}</div>
-        <div> <b>lastDate</b>:: {result.lastDate} </div>
-        <div> <b>notificationDate</b>:: {result.notificationDate} </div>
-        <div> <b>linkToSource</b>:: {result.linkToSource} </div>
-        <div> <b>contactDetails</b>:: {result.contactDetails} </div>
-        <div><b>tags</b>:: {tags}</div>
-        </div>
+<td>{result.minAge}</td>
+<td>{result.maxAge}</td>
+<td>{result.applicationProcess}</td>
+<td>{result.selectionProcess}</td>
+<td>{result.source}</td>
+<td><Time value={result.lastDate} format="YYYY/MM/DD" /></td>
+<td><Time value={result.notificationDate} format="YYYY/MM/DD" /></td>
+<td><a href={result.linkToSource}>{result.linkToSource}</a></td>
+<td>{result.contactDetails}</td>
+<td> {tags}</td>
+
+      </tr>
+        // </div>
     );
   }
   render(){
 
-
+    if(this.props.searchResults.docs === undefined || this.props.searchResults.docs.length == 0 ){
+      return(
+        <div> No Search results to display</div>
+      );
+    }else{
 
     return(
-        <div>
-          {this.props.searchResults.map(this.renderResult)}
-        </div>
+
+
+
+        <table className="table table-striped small">
+<thead>
+<tr>
+  <th>Min Age</th>
+  <th>Max Age</th>
+  <th>Application Process</th>
+  <th>Selection Process</th>
+  <th>Source</th>
+  <th>Last Date</th>
+  <th>Notification Date</th>
+  <th>Link To Source</th>
+  <th>Contact Details</th>
+  <th>Tags</th>
+  </tr>
+</thead>
+<tbody >
+          {this.props.searchResults.docs.map(this.renderResult)}
+          </tbody>
+          </table>
+
     );
   }
+}
 }
 
 function mapStateToProps({searchResults}){
