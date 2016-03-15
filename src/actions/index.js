@@ -5,8 +5,8 @@ export const CREATE_ADMISSION = 'CREATE_ADMISSION';
 export const NEXT_PAGE='NEXT_PAGE';
 
 
-//const ROOT_URL = `https://pacific-shore-18608.herokuapp.com/api`;
-const ROOT_URL = `http://localhost:3000/api`;
+const ROOT_URL = `https://pacific-shore-18608.herokuapp.com/api`;
+//const ROOT_URL = `http://localhost:3000/api`;
 
 export  function searchTag(tag){
   const url = `${ROOT_URL}?tag=${tag}&page=1&limit=1`;
