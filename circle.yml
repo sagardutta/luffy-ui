@@ -15,5 +15,6 @@ dependencies:
 deployment:
     aws:
     branch: master
-      commands:
+        commands:
+        - jekyll build
         - /bin/bash publish.sh
