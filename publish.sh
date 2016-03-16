@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-DEFAULT="companyprofile"
+DEFAULT="web"
 PROFILE=${AWS_PROFILE:-$DEFAULT}
-BUCKET=my-s3-bucket
+BUCKET=ad-search-help
 DIR=_site/
-aws  s3  sync $DIR s3://$BUCKET/ --profile "$PROFILE"
+aws  s3  sync index.html s3://$BUCKET/ --profile "$PROFILE"
