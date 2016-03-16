@@ -15,5 +15,5 @@ dependencies:
 deployment:
     aws:
     branch: master
-    commands:
+      commands:
         - /bin/bash publish.sh
