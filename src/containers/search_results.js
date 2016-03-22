@@ -1,14 +1,29 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {editEntry} from '../actions/index';
 import Time from 'react-time';
 
 
 class SearchResults extends Component{
+constructor(props){
+  super(props);
+  this.editEntry = this.editEntry.bind(this);
+  this.renderResult = this.renderResult.bind(this);
+}
 
+static contextTypes = {
+    router: PropTypes.object
+};
 
+editEntry(id){
+  this.props.editEntry(id).then(() =>{
+      this.context.router.push('posts/update');
+  });
+}
   renderResult(result){
     var tags = result.tags.map(function(tag){
-      return(<span key={tag}>{tag}, </span>);
+      return(<span key={tag}>{tag} </span>);
     });
     return (
         // <div  className="col-md-4" key={result._id}>
@@ -24,6 +39,9 @@ class SearchResults extends Component{
 <td><a href={result.linkToSource}>{result.linkToSource}</a></td>
 <td>{result.contactDetails}</td>
 <td> {tags}</td>
+<td onClick={() => this.editEntry(result._id)}> <i className="fa fa-pencil"></i> </td>
+
+
 
       </tr>
         // </div>
@@ -54,6 +72,7 @@ class SearchResults extends Component{
   <th>Link To Source</th>
   <th>Contact Details</th>
   <th>Tags</th>
+  <th>edit</th>
   </tr>
 </thead>
 <tbody >
@@ -67,7 +86,11 @@ class SearchResults extends Component{
 }
 
 function mapStateToProps({searchResults}){
-  return {searchResults};
+  return {searchResults,editEntry};
 }
 
-export default connect (mapStateToProps)(SearchResults);
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({editEntry}, dispatch);
+}
+
+export default connect (mapStateToProps, mapDispatchToProps)(SearchResults);

@@ -5,18 +5,9 @@ import {Link} from 'react-router';
 
 export const fields = ['minAge','maxAge','applicationProcess','selectionProcess','source','lastDate','notificationDate','linkToSource','contactDetails','tags'];
 
- class PostAdmission extends Component{
+ class UpdateAdmission extends Component{
 
-static contextTypes = {
-    router: PropTypes.object
-};
-   onSubmit(props){
-       props.createdDate = new Date();
-       this.props.createAdmission(props)
-           .then(() => {
-              this.context.router.push('/');
-           });
-   }
+
 
   render(){
 
@@ -24,14 +15,16 @@ static contextTypes = {
       fields :{minAge,maxAge,applicationProcess,selectionProcess,source,lastDate,notificationDate,linkToSource,contactDetails, tags},
       handleSubmit,
       resetForm,
-      submitting
+      submitting,
+      initialValues
     } = this.props;
 
-   
+    console.log(initialValues);
+
     return(
       <div className="m-t-3">
-        <h2> Create an admission entry </h2>
-      <form role="form" className="p-t-3" onSubmit={handleSubmit(this.onSubmit.bind(this))} >
+        <h2> Update an admission entry </h2>
+      <form role="form" className="p-t-3" >
 
 
   <div className="form-group"><label>Min Age</label> <div><input className="form-control" type="text" placeholder="Min Age" {...minAge}/></div></div>
@@ -75,8 +68,14 @@ const  errors = {};
   return errors;
 }
 
+
+function mapStateToProps(state){
+  console.log(state.selectedAdmission);
+  return {initialValues:state.selectedAdmission};
+}
+
 export default reduxForm({
-  form:'admissionForm',
+  form:'admissionUpdateForm',
   fields,
   validate
-},null,{createAdmission})(PostAdmission);
+},mapStateToProps,{createAdmission})(UpdateAdmission);

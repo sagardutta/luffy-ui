@@ -45,9 +45,19 @@ class SearchPage extends Component{
         <div className="row">
         <SearchResults />
        </div>
-       <input type="button" value="Prev Page"  disabled={ !(this.props.searchResults.pages > 1 && this.props.searchResults.page > 1)} onClick={this.nextPageOfResults(-1)}/>
-       <input type="button" value="Next Page" disabled={ this.props.searchResults.page == this.props.searchResults.pages}  onClick={this.nextPageOfResults(1)}/>
+
+
+
+
+      <div className="row">
+      <input  type="button" className="btn btn-primary col-md-2" value="Prev Page"  disabled={ !(this.props.searchResults.pages > 1 && this.props.searchResults.page > 1)} onClick={this.nextPageOfResults(-1)}/>
+      <div className="col-md-8">
+      <label className="text-center">Page {this.props.searchResults.page}</label>
       </div>
+      <input  type="button" className="btn btn-primary col-md-2" value="Next Page" disabled={ this.props.searchResults.page == this.props.searchResults.pages}  onClick={this.nextPageOfResults(1)}/>
+
+      </div>
+       </div>
     );
   }
 
