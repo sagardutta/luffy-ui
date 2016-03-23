@@ -12,6 +12,9 @@ static contextTypes = {
 };
    onSubmit(props){
        props.createdDate = new Date();
+       if( props.tags.constructor === String ){
+          props.tags = props.tags.split(',');
+       }
        this.props.createAdmission(props)
            .then(() => {
               this.context.router.push('/');
@@ -27,7 +30,6 @@ static contextTypes = {
       submitting
     } = this.props;
 
-   
     return(
       <div className="m-t-3">
         <h2> Create an admission entry </h2>
@@ -75,8 +77,31 @@ const  errors = {};
   return errors;
 }
 
+function mapStateToProps(state){
+  const init = {
+  "_id": "56f1c5ecbf54ae5178066ab3",
+  "__t": "Admission",
+  "minAge": 21,
+  "maxAge": 25,
+  "applicationProcess": "test",
+  "selectionProcess": "test",
+  "source": "test",
+  "lastDate": "2016-03-03",
+  "notificationDate": "2016-03-25",
+  "linkToSource": "test",
+  "contactDetails": "test",
+  "category": "admission",
+  "__v": 0,
+  "tags": [
+    "adm28",
+    "test32"
+  ]
+};
+  return {initialValues: init};
+}
+
 export default reduxForm({
   form:'admissionForm',
   fields,
   validate
-},null,{createAdmission})(PostAdmission);
+},mapStateToProps,{createAdmission})(PostAdmission);

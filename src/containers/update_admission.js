@@ -1,11 +1,31 @@
 import React, {Component, PropTypes} from 'react';
 import {reduxForm} from 'redux-form';
-import {createAdmission} from '../actions/index';
+import {updateAdmission, deleteAdmission} from '../actions/index';
 import {Link} from 'react-router';
 
 export const fields = ['minAge','maxAge','applicationProcess','selectionProcess','source','lastDate','notificationDate','linkToSource','contactDetails','tags'];
 
  class UpdateAdmission extends Component{
+   static contextTypes ={
+     router: PropTypes.object
+   }
+   onSubmit(props){
+
+     if( props.tags.constructor === String ){
+        props.tags = props.tags.split(',');
+     }
+
+      this.props.updateAdmission(this.props._id,props).then(() => {
+        this.context.router.push('/');
+      });
+   }
+
+   onDelete(){
+     console.log("onDelete");
+      this.props.deleteAdmission(this.props._id).then(() => {
+        this.context.router.push('/');
+      });
+   }
 
 
 
@@ -22,7 +42,7 @@ export const fields = ['minAge','maxAge','applicationProcess','selectionProcess'
     console.log(initialValues);
 
     return(
-      <div className="m-t-3">
+      <div className="m-t-3" onSubmit={handleSubmit(this.onSubmit.bind(this))}>
         <h2> Update an admission entry </h2>
       <form role="form" className="p-t-3" >
 
@@ -52,6 +72,11 @@ export const fields = ['minAge','maxAge','applicationProcess','selectionProcess'
  Clear values
  </button>
 
+ <button className="btn btn-danger"  type="button" disabled={submitting} onClick={() => this.onDelete()} >
+  Delete
+  </button>
+
+
 </div>
       </form>
       </div>
@@ -71,11 +96,21 @@ const  errors = {};
 
 function mapStateToProps(state){
   console.log(state.selectedAdmission);
-  return {initialValues:state.selectedAdmission};
+  let selectedAdmission = state.selectedAdmission;
+  if(selectedAdmission.lastDate){
+      selectedAdmission.lastDate = selectedAdmission.lastDate.split('T')[0];
+  }
+
+  if(selectedAdmission.notificationDate){
+      selectedAdmission.notificationDate = selectedAdmission.notificationDate.split('T')[0];
+  }
+
+
+  return {initialValues:state.selectedAdmission, _id:state.selectedAdmission._id};
 }
 
 export default reduxForm({
   form:'admissionUpdateForm',
   fields,
   validate
-},mapStateToProps,{createAdmission})(UpdateAdmission);
+},mapStateToProps,{updateAdmission, deleteAdmission})(UpdateAdmission);
