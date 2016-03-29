@@ -27,7 +27,7 @@ static contextTypes = {
               this.context.router.push('/');
            })
            .catch((e) => {
-              this.setState({posting:'posting failed...please retry later'});  
+              this.setState({posting:'posting failed...please retry later'});
            });
    }
 
@@ -67,9 +67,9 @@ static contextTypes = {
 <span className ="spinner"><i className="icon-spin icon-refresh"></i></span>  Submit
 </button>
 
-<button className="btn btn-danger"  type="button" disabled={submitting} onClick={resetForm} >
- Clear values
- </button>
+<Link to="/" className="btn btn-danger"  type="button" >
+    Back
+ </Link>
 <span className="m-t-3"> <i class="fa fa-spinner">{this.state.posting}</i></span>
 </div>
       </form>

@@ -68,9 +68,9 @@ export const fields = ['minAge','maxAge','applicationProcess','selectionProcess'
 <span className ="spinner"><i className="icon-spin icon-refresh"></i></span>  Submit
 </button>
 
-<button className="btn btn-danger"  type="button" disabled={submitting} onClick={resetForm} >
- Clear values
- </button>
+<Link to="/" className="btn btn-danger"  type="button" >
+    Back
+ </Link>
 
  <button className="btn btn-danger"  type="button" disabled={submitting} onClick={() => this.onDelete()} >
   Delete

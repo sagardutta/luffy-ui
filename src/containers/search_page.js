@@ -3,12 +3,13 @@ import {connect} from 'react-redux';
 import {searchTag, nextPageOfResults} from '../actions/index';
 import {bindActionCreators} from 'redux';
 import SearchResults from './search_results';
+import {Link} from 'react-router';
 
 class SearchPage extends Component{
 
   constructor(props){
     super(props);
-    this.state = {term:'test'};
+    this.state = {term:'test32'};
     this.onButtonClick = this.onButtonClick.bind(this);
     this.onInputChange = this.onInputChange.bind(this);
     this.nextPageOfResults = this.nextPageOfResults.bind(this);
@@ -53,6 +54,12 @@ class SearchPage extends Component{
 </button>
 
     <span className="col-md-1 m-a-2">{this.state.searching}</span>
+
+    <span className="col-md-1 m-a-2">
+    <Link to="/posts/new" className="btn btn-primary">
+      Add an admission
+    </Link>
+    </span>
         </div>
         </div>
         <div className="row">
