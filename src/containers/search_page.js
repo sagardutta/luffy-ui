@@ -19,7 +19,10 @@ class SearchPage extends Component{
   }
 
   onButtonClick(){
-    this.props.searchTag(this.state.term);
+    this.setState({searching:'...searching'});
+    this.props.searchTag(this.state.term).then(() => {
+      this.setState({searching:''});
+    });
   }
 
   nextPageOfResults(offset){
@@ -39,7 +42,17 @@ class SearchPage extends Component{
         <div>
         <input className="col-md-4 m-a-2" type="text" value={this.state.term} onChange= {event => this.onInputChange(event.target.value)} />
 
-        <input type="button" className="col-md-1 btn btn-primary m-a-2" value="Search" onClick={this.onButtonClick} />
+
+        <button type="button"
+        className="col-md-1 btn btn-primary m-a-2 start"
+        id="btnStartUploads"
+        data-loading-text="<i class='icon-spinner icon-spin icon-large'></i> Searching..."
+        onClick={this.onButtonClick}>
+    <i class="icon-upload icon-large"></i>
+    <span>Search</span>
+</button>
+
+    <span className="col-md-1 m-a-2">{this.state.searching}</span>
         </div>
         </div>
         <div className="row">

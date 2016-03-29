@@ -64,7 +64,7 @@ export const fields = ['minAge','maxAge','applicationProcess','selectionProcess'
   </div>
 
 <div>
-<button className={`btn btn-large btn-success has-spinner ${ {submitting} ? 'active' : ''}`} type="submit" disabled={submitting} >
+<button className={`btn btn-large btn-success has-spinner ${ {submitting} ? 'activee' : ''}`} type="submit" disabled={submitting} >
 <span className ="spinner"><i className="icon-spin icon-refresh"></i></span>  Submit
 </button>
 

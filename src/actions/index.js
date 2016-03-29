@@ -8,8 +8,7 @@ export const UPDATE_ADMISSION = 'UPDATE_ADMISSION';
 export const DELETE_ADMISSION = 'DELETE_ADMISSION';
 
 const PAGE_SIZE = 10;
-//const ROOT_URL = `https://pacific-shore-18608.herokuapp.com/api`;
-const ROOT_URL = `http://localhost:3000/api`;
+ const ROOT_URL = `https://pacific-shore-18608.herokuapp.com/api`;
 
 export  function searchTag(tag){
   const url = `${ROOT_URL}?tag=${tag}&page=1&limit=${PAGE_SIZE}`;

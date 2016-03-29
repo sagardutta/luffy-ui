@@ -7,17 +7,27 @@ export const fields = ['minAge','maxAge','applicationProcess','selectionProcess'
 
  class PostAdmission extends Component{
 
+constructor(props){
+  super(props);
+  this.state = {posting:''};
+}
+
 static contextTypes = {
     router: PropTypes.object
 };
    onSubmit(props){
+      this.setState({posting:'posting....'});
        props.createdDate = new Date();
        if( props.tags.constructor === String ){
           props.tags = props.tags.split(',');
        }
        this.props.createAdmission(props)
            .then(() => {
+
               this.context.router.push('/');
+           })
+           .catch((e) => {
+              this.setState({posting:'posting failed...please retry later'});  
            });
    }
 
@@ -53,14 +63,14 @@ static contextTypes = {
   </div>
 
 <div>
-<button className={`btn btn-large btn-success has-spinner ${ {submitting} ? 'active' : ''}`} type="submit" disabled={submitting} >
+<button className={`btn btn-large btn-success has-spinner ${ {submitting} ? 'activee' : ''}`} type="submit" disabled={submitting} >
 <span className ="spinner"><i className="icon-spin icon-refresh"></i></span>  Submit
 </button>
 
 <button className="btn btn-danger"  type="button" disabled={submitting} onClick={resetForm} >
  Clear values
  </button>
-
+<span className="m-t-3"> <i class="fa fa-spinner">{this.state.posting}</i></span>
 </div>
       </form>
       </div>
