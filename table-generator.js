@@ -13,7 +13,7 @@ function convert(detail){
 
 
 
-var admissionDetails = ["Min Age","Max Age","Application Process","Selection Process","Source","Last Date","Notification Date","Link ToSource","Contact Details"];
+var admissionDetails = ["Notification Name","Qualification","Age","Application Procedure","Selection Process","Source","Last Date","Notification Date","Link ToSource","Duration","Contact Details","Tags","Entrance ExamDate","Required Certificates","Question Paper Language"];
 
 admissionDetails.map(function(detail){
   console.log('<th>'+detail+'</th>');
@@ -22,14 +22,27 @@ admissionDetails.map(function(detail){
 
 admissionDetails.map(function(detail){
   let details = detail.split(" ");
-  let fieldName = details[0].toLowerCase()+details[1];
+
+  let fieldName = details[0].toLowerCase();
+  if(details[1]){
+    fieldName += details[1];
+  }
+  if(details[2]){
+    fieldName += details[2];
+  }
   console.log('<td>{result.'+fieldName+'}</td>');
 });
 
 var fields = '';
 admissionDetails.map(function(detail){
   let details = detail.split(" ");
-  let fieldName = details[0].toLowerCase()+details[1];
+  let fieldName = details[0].toLowerCase();
+  if(details[1]){
+    fieldName += details[1];
+  }
+  if(details[2]){
+    fieldName += details[2];
+  }
   fields.concat('\''+fieldName+'\',')
 });
 

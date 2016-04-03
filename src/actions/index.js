@@ -6,6 +6,8 @@ export const NEXT_PAGE='NEXT_PAGE';
 export const EDIT_ENTRY='EDIT_ENTRY';
 export const UPDATE_ADMISSION = 'UPDATE_ADMISSION';
 export const DELETE_ADMISSION = 'DELETE_ADMISSION';
+export const SELECT_ROW = 'SELECT_ROW';
+export const CLOSE_MODAL = 'CLOSE_MODAL';
 
 const PAGE_SIZE = 10;
  const ROOT_URL = `https://pacific-shore-18608.herokuapp.com/api`;
@@ -72,4 +74,18 @@ export function editEntry(id){
     type:EDIT_ENTRY,
     payload: request
   }
+}
+
+export function selectRow(result){
+  return{
+    type: SELECT_ROW,
+    payload: result
+  };
+}
+
+export function closeModal(){
+  return{
+    type: CLOSE_MODAL,
+    payload: false
+  };
 }
