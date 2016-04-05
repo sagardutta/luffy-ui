@@ -3,10 +3,14 @@
 
 function convert(detail){
   let details = detail.split(" ");
-
-  let fieldName = details[0].toLowerCase();
-  if(details[1]){
-    fieldName = fieldName + details[1];
+  let fieldName = "";
+  let i =0;
+  for (i=0;i< details.length;i++){
+    if( i == 0){
+      fieldName = details[i].toLowerCase();
+    }else{
+      fieldName = fieldName + details[i];
+    }
   }
   return fieldName;
 }
@@ -49,8 +53,9 @@ admissionDetails.map(function(detail){
 let j =0;
 let fieldNameWithApos = "";
 let fieldDef = "";
-let divDefinition = '<div className="form-group"><label>FIRST_NAME</label><div className="col-xs-3"><input className="form-control" type="text" placeholder="'+"FIRST_NAME"+'" {...'+"firstName"+'}/></div></div>';
+let divDefinition = '<div className="form-group"><label>FIRST_NAME</label><div><input className="form-control" type="text" placeholder="'+"FIRST_NAME"+'" {...'+"firstName"+'}/></div></div>';
 console.log(divDefinition);
+console.log("-----------------------------------------------------------------------------------");
 for (var detail of admissionDetails){
   //fields.concat(detail);
   let fieldName = convert(detail);
@@ -60,12 +65,12 @@ for (var detail of admissionDetails){
   //  console.log(divDefinition.);
 
   if( j == 8 ){
-      console.log(fieldNameWithApos);
-      console.log(fieldDef);
+
   }
  j++;
 
 }
-
+console.log(fieldNameWithApos);
+console.log(fieldDef);
 
 //

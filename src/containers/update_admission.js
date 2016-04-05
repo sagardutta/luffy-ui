@@ -13,121 +13,98 @@ import {
   Link
 } from 'react-router';
 
-export const fields = ['minAge', 'maxAge', 'applicationProcess', 'selectionProcess', 'source', 'lastDate', 'notificationDate', 'linkToSource', 'contactDetails', 'tags'];
+export const fields = ['notificationName','qualification','age','applicationProcedure','selectionProcess','source','lastDate','notificationDate','linkToSource','duration','contactDetails','tags','entranceExamDate','requiredCertificates','questionPaperLanguage'];
 
-class UpdateAdmission extends Component {
-  static contextTypes = {
+ class UpdateAdmission extends Component{
+
+constructor(props){
+  super(props);
+  this.state = {posting:''};
+}
+
+static contextTypes = {
     router: PropTypes.object
-  }
-  onSubmit(props) {
+};
+   onSubmit(props){
+      this.setState({posting:'posting....'});
+       props.createdDate = new Date();
+       if( props.tags.constructor === String ){
+          props.tags = props.tags.split(',');
+       }
+       this.props.updateAdmission(props, this.props._id)
+           .then(() => {
 
-    if (props.tags.constructor === String) {
-      props.tags = props.tags.split(',');
-    }
+              this.context.router.push('/');
+           })
+           .catch((e) => {
+              this.setState({posting:'posting failed...please retry later'});
+           });
+   }
 
-    this.props.updateAdmission(this.props._id, props).then(() => {
-      this.context.router.push('/');
-    });
-  }
+  render(){
 
-  onDelete() {
-    console.log("onDelete");
-    this.props.deleteAdmission(this.props._id).then(() => {
-      this.context.router.push('/');
-    });
-  }
-
-
-
-  render() {
-
-    const {
-      fields: {
-        minAge,
-        maxAge,
-        applicationProcess,
-        selectionProcess,
-        source,
-        lastDate,
-        notificationDate,
-        linkToSource,
-        contactDetails,
-        tags
-      },
+    const{
+      fields :{notificationName,qualification,age,applicationProcedure,selectionProcess,source,lastDate,notificationDate,linkToSource,duration,contactDetails,tags,entranceExamDate,requiredCertificates,questionPaperLanguage},
       handleSubmit,
       resetForm,
-      submitting,
-      initialValues
+      submitting
     } = this.props;
 
-    console.log(initialValues);
+    return(
+      <div className="m-t-3">
+        <h2> Create an admission entry </h2>
+      <form role="form" className="p-t-3" onSubmit={handleSubmit(this.onSubmit.bind(this))} >
 
-    return ( < div className = "m-t-3"
-      onSubmit = {
-        handleSubmit(this.onSubmit.bind(this))
-      } >
-      < h2 > Update an admission entry < /h2> < form role = "form"
-      className = "p-t-3" >
-
-
-      < div className = "form-group" > < label > Min Age < /label> <div><input className="form-control" type="text" placeholder="Min Age" {...minAge}/ > < /div></div >
-      < div className = "form-group" > < label > Max Age < /label><div> <input className="form-control" type="text" placeholder="Max Age" {...maxAge}/ > < /div></div >
-      < div className = "form-group" > < label > Application Process < /label><div> <input className="form-control" type="text" placeholder="Application Process" {...applicationProcess}/ > < /div></div >
-      < div className = "form-group" > < label > Selection Process < /label><div> <input className="form-control" type="text" placeholder="Selection Process" {...selectionProcess}/ > < /div></div >
-      < div className = "form-group" > < label > Source < /label><div> <input className="form-control" type="text" placeholder="Source" {...source}/ > < /div></div >
-      < div className = "form-group" > < label > Last Date < /label><div> <input className="form-control" type="date" placeholder="Last Date" {...lastDate}/ > < /div></div >
-      < div className = "form-group" > < label > Notification Date < /label><div> <input className="form-control" type="date" placeholder="Notification Date" {...notificationDate}/ > < /div></div >
-      < div className = "form-group" > < label > Link ToSource < /label><div> <input className="form-control" type="text" placeholder="Link ToSource" {...linkToSource}/ > < /div></div >
-      < div className = "form-group" > < label > Contact Details < /label><div> <input className="form-control" type="text" placeholder="Contact Details" {...contactDetails}/ > < /div></div >
-      < div className = "form-group" >
-      < label > Tags < /label><div> <input className={`form-control ${tags.touched && tags.error ? ' has-danger' : ''}`} type="text"  placeholder="tags" {...tags}/ > < /div> < div className = "text-help" > {
-        tags.error
-      } < /div> < /div>
-
-      < div >
-      < button className = {
-        `btn btn-large btn-success has-spinner ${ {submitting} ? 'activee' : ''}`
-      }
-      type = "submit"
-      disabled = {
-        submitting
-      } >
-      < span className = "spinner" > < i className = "icon-spin icon-refresh" > < /i></span > Submit < /button>
-
-      < Link to = "/"
-      className = "btn btn-danger"
-      type = "button" >
-      Back < /Link>
-
-      < button className = "btn btn-danger"
-      type = "button"
-      disabled = {
-        submitting
-      }
-      onClick = {
-        () => this.onDelete()
-      } >
-      Delete < /button>
+      <div className="form-group"><label>Notification Name</label><div><input className="form-control" type="text" placeholder="Notification Name" {...notificationName}/></div></div>
+    <div className="form-group"><label>Qualification</label><div><input className="form-control" type="text" placeholder="Qualification" {...qualification}/></div></div>
+    <div className="form-group"><label>Age</label><div><input className="form-control" type="text" placeholder="Age" {...age}/></div></div>
+    <div className="form-group"><label>Application Procedure</label><div><input className="form-control" type="text" placeholder="Application Procedure" {...applicationProcedure}/></div></div>
+    <div className="form-group"><label>Selection Process</label><div><input className="form-control" type="text" placeholder="Selection Process" {...selectionProcess}/></div></div>
+    <div className="form-group"><label>Source</label><div><input className="form-control" type="text" placeholder="Source" {...source}/></div></div>
+    <div className="form-group"><label>Last Date</label><div><input className="form-control" type="date" placeholder="Last Date" {...lastDate}/></div></div>
+    <div className="form-group"><label>Notification Date</label><div><input className="form-control" type="date" placeholder="Notification Date" {...notificationDate}/></div></div>
+    <div className="form-group"><label>Link ToSource</label><div><input className="form-control" type="text" placeholder="Link ToSource" {...linkToSource}/></div></div>
+    <div className="form-group"><label>Duration</label><div><input className="form-control" type="text" placeholder="Duration" {...duration}/></div></div>
+    <div className="form-group"><label>Contact Details</label><div><input className="form-control" type="text" placeholder="Contact Details" {...contactDetails}/></div></div>
+    <div className="form-group">
+    <label>Tags</label><div> <input className={`form-control ${tags.touched && tags.error ? ' has-danger' : ''}`} type="text"  placeholder="tags" {...tags}/></div>
+    <div className="text-help">
+      {tags.error}
+    </div>
+    </div>
+    <div className="form-group"><label>Entrance ExamDate</label><div><input className="form-control" type="date" placeholder="Entrance ExamDate" {...entranceExamDate}/></div></div>
+    <div className="form-group"><label>Required Certificates</label><div><input className="form-control" type="text" placeholder="Required Certificates" {...requiredCertificates}/></div></div>
 
 
-      < /div> < /form> < /div>
+
+<div>
+<button className={`btn btn-large btn-success has-spinner ${ {submitting} ? 'activee' : ''}`} type="submit" disabled={submitting} >
+<span className ="spinner"><i className="icon-spin icon-refresh"></i></span>  Submit
+</button>
+
+<Link to="/" className="btn btn-danger"  type="button" >
+    Back
+ </Link>
+<span className="m-t-3"> <i class="fa fa-spinner">{this.state.posting}</i></span>
+</div>
+      </form>
+      </div>
     );
   }
 }
 
-function validate(values) {
-  const errors = {};
+function validate(values){
+const  errors = {};
 
-  if (!values.tags) {
+  if(!values.tags){
     errors.tags = 'please enter the tag values';
   }
   return errors;
 }
 
-
 function mapStateToProps(state) {
-  console.log(state.selectedAdmission);
-  let selectedAdmission = state.selectedAdmission;
+  console.log(state.selectedRow);
+  let selectedAdmission = state.selectedRow;
   if (selectedAdmission.lastDate) {
     selectedAdmission.lastDate = selectedAdmission.lastDate.split('T')[0];
   }
@@ -138,8 +115,8 @@ function mapStateToProps(state) {
 
 
   return {
-    initialValues: state.selectedAdmission,
-    _id: state.selectedAdmission._id
+    initialValues: state.selectedRow,
+    _id: state.selectedRow._id
   };
 }
 

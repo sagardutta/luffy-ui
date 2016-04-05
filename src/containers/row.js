@@ -1,31 +1,49 @@
-import React,{Component} from 'react';
+import React,{Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import Time from 'react-time';
-import {selectRow} from '../actions/index';
+import {selectRow, updateRow} from '../actions/index';
  class Row extends Component {
 
 constructor(props){
   super(props);
   this.props = props;
   this.displayRow = this.displayRow.bind(this);
+  this.editEntry = this.editEntry.bind(this);
 }
+
+static contextTypes = {
+    router: PropTypes.object
+};
 
 displayRow(result){
   this.props.selectRow(result);
 }
 
+editEntry(result){
+  this.props.updateRow(result);
+  this.context.router.push('posts/update');
+}
+renderList(list){
+   var renderedList = list.map(function(object){
+     return ( < div key = {
+         object
+       } > {
+         object
+       } < /div>);
+   });
+
+   return renderedList;
+}
+
 
 render(){
 
-  var tags = this.props.result.tags.map(function(tag) {
-      return ( < span key = {
-          tag
-        } > {
-          tag
-        } < /span>);
-      });
+  var tags = this.renderList(this.props.result.tags);
 
+
+  var requiredCertificates = this.renderList(this.props.result.requiredCertificates);
+  var questionPaperLanguages = this.renderList(this.props.result.questionPaperLanguage);
 return(
 
 
@@ -45,14 +63,14 @@ return(
     <td>{this.props.result.linkToSource}</td>
     <td>{this.props.result.duration}</td>
     <td>{this.props.result.contactDetails}</td>
-    <td>{this.props.result.tags}</td>
+    < td > {
+             tags
+           } < /td>
     <td> < Time value = {this.props.result.entranceExamDate}   format = "YYYY/MM/DD" / ></td>
-    <td>{this.props.result.requiredCertificates}</td>
-    <td>{this.props.result.questionPaperLanguage}</td>
-   < td > {
-            tags
-          } < /td> < td onClick = {
-            () => this.editEntry(result._id)
+    <td>{requiredCertificates}</td>
+    <td>{questionPaperLanguages}</td>
+ < td onClick = {
+            () => this.editEntry(this.props.result)
           } > < i className = "fa fa-pencil" > < /i> </td >
 
           <td onClick = { () => this.displayRow(this.props.result)}><i className = "fa fa-pencil"></i></td>
@@ -70,7 +88,7 @@ function mapStateToProps(){
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({selectRow}, dispatch);
+  return bindActionCreators({selectRow, updateRow}, dispatch);
 }
 
 export default connect (mapStateToProps, mapDispatchToProps)(Row);

@@ -3,7 +3,7 @@ import {reduxForm} from 'redux-form';
 import {createAdmission} from '../actions/index';
 import {Link} from 'react-router';
 
-export const fields = ['minAge','maxAge','applicationProcess','selectionProcess','source','lastDate','notificationDate','linkToSource','contactDetails','tags'];
+export const fields = ['notificationName','qualification','age','applicationProcedure','selectionProcess','source','lastDate','notificationDate','linkToSource','duration','contactDetails','tags','entranceExamDate','requiredCertificates','questionPaperLanguage'];
 
  class PostAdmission extends Component{
 
@@ -34,7 +34,7 @@ static contextTypes = {
   render(){
 
     const{
-      fields :{minAge,maxAge,applicationProcess,selectionProcess,source,lastDate,notificationDate,linkToSource,contactDetails, tags},
+      fields :{notificationName,qualification,age,applicationProcedure,selectionProcess,source,lastDate,notificationDate,linkToSource,duration,contactDetails,tags,entranceExamDate,requiredCertificates,questionPaperLanguage},
       handleSubmit,
       resetForm,
       submitting
@@ -45,22 +45,27 @@ static contextTypes = {
         <h2> Create an admission entry </h2>
       <form role="form" className="p-t-3" onSubmit={handleSubmit(this.onSubmit.bind(this))} >
 
+      <div className="form-group"><label>Notification Name</label><div><input className="form-control" type="text" placeholder="Notification Name" {...notificationName}/></div></div>
+    <div className="form-group"><label>Qualification</label><div><input className="form-control" type="text" placeholder="Qualification" {...qualification}/></div></div>
+    <div className="form-group"><label>Age</label><div><input className="form-control" type="text" placeholder="Age" {...age}/></div></div>
+    <div className="form-group"><label>Application Procedure</label><div><input className="form-control" type="text" placeholder="Application Procedure" {...applicationProcedure}/></div></div>
+    <div className="form-group"><label>Selection Process</label><div><input className="form-control" type="text" placeholder="Selection Process" {...selectionProcess}/></div></div>
+    <div className="form-group"><label>Source</label><div><input className="form-control" type="text" placeholder="Source" {...source}/></div></div>
+    <div className="form-group"><label>Last Date</label><div><input className="form-control" type="date" placeholder="Last Date" {...lastDate}/></div></div>
+    <div className="form-group"><label>Notification Date</label><div><input className="form-control" type="date" placeholder="Notification Date" {...notificationDate}/></div></div>
+    <div className="form-group"><label>Link ToSource</label><div><input className="form-control" type="text" placeholder="Link ToSource" {...linkToSource}/></div></div>
+    <div className="form-group"><label>Duration</label><div><input className="form-control" type="text" placeholder="Duration" {...duration}/></div></div>
+    <div className="form-group"><label>Contact Details</label><div><input className="form-control" type="text" placeholder="Contact Details" {...contactDetails}/></div></div>
+    <div className="form-group">
+    <label>Tags</label><div> <input className={`form-control ${tags.touched && tags.error ? ' has-danger' : ''}`} type="text"  placeholder="tags" {...tags}/></div>
+    <div className="text-help">
+      {tags.error}
+    </div>
+    </div>
+    <div className="form-group"><label>Entrance ExamDate</label><div><input className="form-control" type="date" placeholder="Entrance ExamDate" {...entranceExamDate}/></div></div>
+    <div className="form-group"><label>Required Certificates</label><div><input className="form-control" type="text" placeholder="Required Certificates" {...requiredCertificates}/></div></div>
 
-  <div className="form-group"><label>Min Age</label> <div><input className="form-control" type="text" placeholder="Min Age" {...minAge}/></div></div>
-  <div className="form-group"><label>Max Age</label><div> <input className="form-control" type="text" placeholder="Max Age" {...maxAge}/></div></div>
-  <div className="form-group"><label>Application Process</label><div> <input className="form-control" type="text" placeholder="Application Process" {...applicationProcess}/></div></div>
-  <div className="form-group"><label>Selection Process</label><div> <input className="form-control" type="text" placeholder="Selection Process" {...selectionProcess}/></div></div>
-  <div className="form-group"><label>Source</label><div> <input className="form-control" type="text" placeholder="Source" {...source}/></div></div>
-  <div className="form-group"><label>Last Date</label><div> <input className="form-control" type="date" placeholder="Last Date" {...lastDate}/></div></div>
-  <div className="form-group"><label>Notification Date</label><div> <input className="form-control" type="date" placeholder="Notification Date" {...notificationDate}/></div></div>
-  <div className="form-group"><label>Link ToSource</label><div> <input className="form-control" type="text" placeholder="Link ToSource" {...linkToSource}/></div></div>
-  <div className="form-group"><label>Contact Details</label><div> <input className="form-control" type="text" placeholder="Contact Details" {...contactDetails}/></div></div>
-  <div className="form-group">
-  <label>Tags</label><div> <input className={`form-control ${tags.touched && tags.error ? ' has-danger' : ''}`} type="text"  placeholder="tags" {...tags}/></div>
-  <div className="text-help">
-    {tags.error}
-  </div>
-  </div>
+
 
 <div>
 <button className={`btn btn-large btn-success has-spinner ${ {submitting} ? 'activee' : ''}`} type="submit" disabled={submitting} >
@@ -89,19 +94,30 @@ const  errors = {};
 
 function mapStateToProps(state){
   const init = {
-  "_id": "56f1c5ecbf54ae5178066ab3",
+  "_id": "570020bfef95673d0a52c25b",
   "__t": "Admission",
-  "minAge": 21,
-  "maxAge": 25,
-  "applicationProcess": "test",
+  "notificationName": "polycet AP",
+  "age": 25,
+  "applicationProcedure": "test",
   "selectionProcess": "test",
   "source": "test",
-  "lastDate": "2016-03-03",
-  "notificationDate": "2016-03-25",
+  "lastDate": "2016-03-03T00:00:00.000Z",
+  "notificationDate": "2016-03-25T00:00:00.000Z",
   "linkToSource": "test",
   "contactDetails": "test",
+  "createdDate": "2016-03-29T03:43:45.477Z",
   "category": "admission",
+  "duration":"3 months",
+  "qualification":"10th class",
   "__v": 0,
+  "questionPaperLanguage": [
+    "english",
+    "telugu"
+  ],
+  "requiredCertificates": [
+    "cert1",
+    "cert2"
+  ],
   "tags": [
     "adm28",
     "test32"

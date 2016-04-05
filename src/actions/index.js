@@ -7,6 +7,7 @@ export const EDIT_ENTRY='EDIT_ENTRY';
 export const UPDATE_ADMISSION = 'UPDATE_ADMISSION';
 export const DELETE_ADMISSION = 'DELETE_ADMISSION';
 export const SELECT_ROW = 'SELECT_ROW';
+export const UPDATE_ROW = 'UPDATE_ROW';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 
 const PAGE_SIZE = 10;
@@ -43,11 +44,13 @@ export function createAdmission(props){
 
 }
 
-export function updateAdmission(id,props){
+export function updateAdmission(props,id){
+
   props.category = 'admission';
+  console.log(props);
+  //props.tags = props.tags.split(",");
+  const request = axios.put(`${ROOT_URL}/${id}`, props);
 
-
-  const request = axios.put(`${ROOT_URL}/${id}`, props)
   console.log('inside update admission action');
   return{
     type: UPDATE_ADMISSION,
@@ -82,6 +85,14 @@ export function selectRow(result){
     payload: result
   };
 }
+
+export function updateRow(result){
+  return{
+    type: UPDATE_ROW,
+    payload: result
+  };
+}
+
 
 export function closeModal(){
   return{
