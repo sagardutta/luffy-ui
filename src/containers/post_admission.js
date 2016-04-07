@@ -3,7 +3,7 @@ import {reduxForm} from 'redux-form';
 import {createAdmission} from '../actions/index';
 import {Link} from 'react-router';
 
-export const fields = ['notificationName','qualification','age','applicationProcedure','selectionProcess','source','lastDate','notificationDate','linkToSource','duration','contactDetails','tags','entranceExamDate','requiredCertificates','questionPaperLanguage'];
+export const fields = ['notificationName','qualification','age','applicationProcedure','selectionProcess','source','lastDate','notificationDate','linkToSource','duration','contactDetails','tags','entranceExamDate','requiredCertificates','questionPaperLanguages'];
 
  class PostAdmission extends Component{
 
@@ -21,6 +21,12 @@ static contextTypes = {
        if( props.tags.constructor === String ){
           props.tags = props.tags.split(',');
        }
+       if( props.questionPaperLanguages.constructor === String ){
+          props.questionPaperLanguages = props.questionPaperLanguages.split(',');
+       }
+       if( props.requiredCertificates.constructor === String ){
+          props.requiredCertificates = props.requiredCertificates.split(',');
+       }
        this.props.createAdmission(props)
            .then(() => {
 
@@ -34,7 +40,7 @@ static contextTypes = {
   render(){
 
     const{
-      fields :{notificationName,qualification,age,applicationProcedure,selectionProcess,source,lastDate,notificationDate,linkToSource,duration,contactDetails,tags,entranceExamDate,requiredCertificates,questionPaperLanguage},
+      fields :{notificationName,qualification,age,applicationProcedure,selectionProcess,source,lastDate,notificationDate,linkToSource,duration,contactDetails,tags,entranceExamDate,requiredCertificates,questionPaperLanguages},
       handleSubmit,
       resetForm,
       submitting
@@ -54,7 +60,7 @@ static contextTypes = {
     <div className="form-group"><label>Last Date</label><div><input className="form-control" type="date" placeholder="Last Date" {...lastDate}/></div></div>
     <div className="form-group"><label>Notification Date</label><div><input className="form-control" type="date" placeholder="Notification Date" {...notificationDate}/></div></div>
     <div className="form-group"><label>Link ToSource</label><div><input className="form-control" type="text" placeholder="Link ToSource" {...linkToSource}/></div></div>
-    <div className="form-group"><label>Duration</label><div><input className="form-control" type="text" placeholder="Duration" {...duration}/></div></div>
+    <div className="form-group"><label>Duration in years</label><div><input className="form-control" type="text" placeholder="Duration" {...duration}/></div></div>
     <div className="form-group"><label>Contact Details</label><div><input className="form-control" type="text" placeholder="Contact Details" {...contactDetails}/></div></div>
     <div className="form-group">
     <label>Tags</label><div> <input className={`form-control ${tags.touched && tags.error ? ' has-danger' : ''}`} type="text"  placeholder="tags" {...tags}/></div>
@@ -64,6 +70,7 @@ static contextTypes = {
     </div>
     <div className="form-group"><label>Entrance ExamDate</label><div><input className="form-control" type="date" placeholder="Entrance ExamDate" {...entranceExamDate}/></div></div>
     <div className="form-group"><label>Required Certificates</label><div><input className="form-control" type="text" placeholder="Required Certificates" {...requiredCertificates}/></div></div>
+    <div className="form-group"><label>Question Paper Languages</label><div><input className="form-control" type="text" placeholder="Question Paper Languages" {...questionPaperLanguages}/></div></div>
 
 
 
@@ -107,10 +114,10 @@ function mapStateToProps(state){
   "contactDetails": "test",
   "createdDate": "2016-03-29T03:43:45.477Z",
   "category": "admission",
-  "duration":"3 months",
+  "duration":"3",
   "qualification":"10th class",
   "__v": 0,
-  "questionPaperLanguage": [
+  "questionPaperLanguages": [
     "english",
     "telugu"
   ],

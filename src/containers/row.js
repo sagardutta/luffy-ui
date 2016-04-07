@@ -25,15 +25,22 @@ editEntry(result){
   this.context.router.push('posts/update');
 }
 renderList(list){
-   var renderedList = list.map(function(object){
-     return ( < div key = {
-         object
-       } > {
-         object
-       } < /div>);
-   });
+  if(list){
+    var renderedList = list.map(function(object){
+      return ( < div key = {
+          object
+        } > {
+          object
+        } < /div>);
+    });
 
-   return renderedList;
+    return renderedList;
+
+  }else{
+    return '';
+  }
+
+
 }
 
 
@@ -43,7 +50,7 @@ render(){
 
 
   var requiredCertificates = this.renderList(this.props.result.requiredCertificates);
-  var questionPaperLanguages = this.renderList(this.props.result.questionPaperLanguage);
+  var questionPaperLanguages = this.renderList(this.props.result.questionPaperLanguages);
 return(
 
 
@@ -73,7 +80,7 @@ return(
             () => this.editEntry(this.props.result)
           } > < i className = "fa fa-pencil" > < /i> </td >
 
-          <td onClick = { () => this.displayRow(this.props.result)}><i className = "fa fa-pencil"></i></td>
+          <td onClick = { () => this.displayRow(this.props.result)}><i className = "fa fa-eye"></i></td>
           < /tr>
 
 

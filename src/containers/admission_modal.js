@@ -10,6 +10,32 @@ import {closeModal} from '../actions/index';
 import Time from 'react-time';
 class AdmissionModal extends Component {
 
+constructor(props){
+  super(props);
+  this.renderList = this.renderList.bind(this);
+}
+
+  renderList(list){
+    if(list){
+      var renderedList = list.map(function(object){
+        return ( < div key = {
+            object
+          } > {
+            object
+          } < /div>);
+      });
+
+      return renderedList;
+    }else{
+      return '';
+    }
+
+  }
+
+  renderValue(value){
+    return value ? value :'';
+  }
+
 
   render() {
 
@@ -36,19 +62,30 @@ class AdmissionModal extends Component {
 
             < table className = "table table-bordered small" >
             < tbody >
+
+
             < tr >
-            < td > Min Age < /td> < td > {
+            < td > Notification Name < /td> < td > {
+          this.props.selectedRow.notificationName
+        } < /td> < /tr >
+
+
+        < tr >
+        < td > Qualification  < /td> < td > {
+      this.props.selectedRow.qualification
+    } < /td> < /tr >
+
+
+            < tr >
+            < td >  Age < /td> < td > {
             this.props.selectedRow.age
           } < /td> < /tr >
 
-          < tr >
-          < td > Max Age < /td> < td > {
-        this.props.selectedRow.maxAge
-      } < /td> < /tr >
+
 
       < tr >
-        < td > Application Process < /td> < td > {
-      this.props.selectedRow.applicationProcess
+        < td > Application Procedure < /td> < td > {
+      this.props.selectedRow.applicationProcedure
     } < /td> < /tr >
 
     < tr >
@@ -67,10 +104,44 @@ this.props.selectedRow.lastDate
 }
 format = "YYYY/MM/DD" / > < /td> < /tr >
 
+< tr >
+  < td > Notification Date < /td> < td > < Time value = {
+this.props.selectedRow.notificationDate
+}
+format = "YYYY/MM/DD" / > < /td> < /tr >
+
+
+< tr >
+  < td > Entrance Exam Date < /td> < td > < Time value = {
+this.props.selectedRow.entranceExamDate
+}
+format = "YYYY/MM/DD" / > < /td> < /tr >
+
+
+
   < tr >
   < td > link to source < /td> < td > {
 this.props.selectedRow.linkToSource
 } < /td> < /tr >
+
+
+< tr >
+< td > Tags < /td> < td > {
+ this.renderList(this.props.selectedRow.tags)
+} < /td> < /tr >
+
+
+< tr >
+< td > Required Certificates < /td> < td > {
+this.renderList(this.props.selectedRow.requiredCertificates)
+} < /td> < /tr >
+
+
+< tr >
+< td > Question Paper Languages < /td> < td > {
+this.renderList(this.props.selectedRow.questionPaperLanguages)
+} < /td> < /tr >
+
 
 < /tbody> < /table >
 

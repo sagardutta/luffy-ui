@@ -49,7 +49,7 @@ class SearchPage extends Component{
         id="btnStartUploads"
         data-loading-text="<i class='icon-spinner icon-spin icon-large'></i> Searching..."
         onClick={this.onButtonClick}>
-    <i class="icon-upload icon-large"></i>
+    <i className="icon-upload icon-large"></i>
     <span>Search</span>
 </button>
 
