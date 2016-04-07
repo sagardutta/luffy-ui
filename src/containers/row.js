@@ -67,7 +67,7 @@ return(
     <td>{this.props.result.source}</td>
     <td>< Time value ={this.props.result.lastDate} format = "YYYY/MM/DD" /></td>
     <td>< Time value ={this.props.result.notificationDate} format = "YYYY/MM/DD" /></td>
-    <td>{this.props.result.linkToSource}</td>
+    <td>{this.props.result.source}</td>
     <td>{this.props.result.duration}</td>
     <td>{this.props.result.contactDetails}</td>
     < td > {

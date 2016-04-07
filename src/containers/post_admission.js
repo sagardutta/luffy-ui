@@ -59,7 +59,7 @@ static contextTypes = {
     <div className="form-group"><label>Source</label><div><input className="form-control" type="text" placeholder="Source" {...source}/></div></div>
     <div className="form-group"><label>Last Date</label><div><input className="form-control" type="date" placeholder="Last Date" {...lastDate}/></div></div>
     <div className="form-group"><label>Notification Date</label><div><input className="form-control" type="date" placeholder="Notification Date" {...notificationDate}/></div></div>
-    <div className="form-group"><label>Link ToSource</label><div><input className="form-control" type="text" placeholder="Link ToSource" {...linkToSource}/></div></div>
+    
     <div className="form-group"><label>Duration in years</label><div><input className="form-control" type="text" placeholder="Duration" {...duration}/></div></div>
     <div className="form-group"><label>Contact Details</label><div><input className="form-control" type="text" placeholder="Contact Details" {...contactDetails}/></div></div>
     <div className="form-group">
@@ -110,7 +110,6 @@ function mapStateToProps(state){
   "source": "test",
   "lastDate": "2016-03-03T00:00:00.000Z",
   "notificationDate": "2016-03-25T00:00:00.000Z",
-  "linkToSource": "test",
   "contactDetails": "test",
   "createdDate": "2016-03-29T03:43:45.477Z",
   "category": "admission",

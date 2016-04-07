@@ -119,11 +119,6 @@ format = "YYYY/MM/DD" / > < /td> < /tr >
 
 
 
-  < tr >
-  < td > link to source < /td> < td > {
-this.props.selectedRow.linkToSource
-} < /td> < /tr >
-
 
 < tr >
 < td > Tags < /td> < td > {
