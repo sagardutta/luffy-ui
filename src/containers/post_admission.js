@@ -27,6 +27,7 @@ static contextTypes = {
        if( props.requiredCertificates.constructor === String ){
           props.requiredCertificates = props.requiredCertificates.split(',');
        }
+
        this.props.createAdmission(props)
            .then(() => {
 
@@ -59,7 +60,7 @@ static contextTypes = {
     <div className="form-group"><label>Source</label><div><input className="form-control" type="text" placeholder="Source" {...source}/></div></div>
     <div className="form-group"><label>Last Date</label><div><input className="form-control" type="date" placeholder="Last Date" {...lastDate}/></div></div>
     <div className="form-group"><label>Notification Date</label><div><input className="form-control" type="date" placeholder="Notification Date" {...notificationDate}/></div></div>
-    
+
     <div className="form-group"><label>Duration in years</label><div><input className="form-control" type="text" placeholder="Duration" {...duration}/></div></div>
     <div className="form-group"><label>Contact Details</label><div><input className="form-control" type="text" placeholder="Contact Details" {...contactDetails}/></div></div>
     <div className="form-group">
@@ -108,10 +109,11 @@ function mapStateToProps(state){
   "applicationProcedure": "test",
   "selectionProcess": "test",
   "source": "test",
-  "lastDate": "2016-03-03T00:00:00.000Z",
-  "notificationDate": "2016-03-25T00:00:00.000Z",
+  "lastDate": "2016-03-03",
+  "notificationDate": "2016-03-25",
   "contactDetails": "test",
-  "createdDate": "2016-03-29T03:43:45.477Z",
+  "createdDate": "2016-03-29",
+  "entranceExamDate": "2016-03-29",
   "category": "admission",
   "duration":"3",
   "qualification":"10th class",

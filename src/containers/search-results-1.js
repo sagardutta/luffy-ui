@@ -15,6 +15,8 @@ import Time from 'react-time';
 import Modal from 'react-modal';
 import Row from './row-1';
 import AdmissionModal from './admission_modal';
+import ReactTable,{Table, Tr, Td} from 'reactable';
+
 
 
 class SearchResults extends Component {
@@ -25,6 +27,8 @@ class SearchResults extends Component {
     this.displayRow = this.displayRow.bind(this);
     this.renderModal = this.renderModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.convertRowsForTable = this.convertRowsForTable.bind(this);
+    this.convertRowsForTable = this.convertRowsForTable.bind(this);
     this.state = {
       modalIsOpen: false,
       result: {}
@@ -84,15 +88,23 @@ class SearchResults extends Component {
 
 
   renderResult(result) {
-
-
-
     return (
-
       < Row key={result._id} result = {result} />
-
     );
   }
+
+
+  convertRowsForTable(docs){
+
+    const rowsForTable = docs.map((doc) => {
+          console.log(doc.notificationName);
+          let  {notificationName:notificationName, qualification:qualification, tags:tags} = doc;
+          return {notificationName:notificationName, qualification:qualification, tags:tags};
+    })
+    return rowsForTable;
+  }
+
+
   render() {
 
     if (this.props.searchResults.docs === undefined || this.props.searchResults.docs.length == 0) {
@@ -100,24 +112,35 @@ class SearchResults extends Component {
       }
       else {
 
+
+
         return (
 
 
-            < table className="table">
+          <div>
 
-            < div className="col-md-3"> Notification Name < /div> < div className="col-md-3"> Tags < /div> < div className="col-md-3"> Edit < /div> < div className="col-md-3"> View < /div>
 
-            {
-            this.props.searchResults.docs.map(this.renderResult)
-          }
+          <Table className="table table-striped">
 
+          {this.convertRowsForTable(this.props.searchResults.docs).map((row) => {
+            return(
+              <Tr>
+                <Td column = "notificationName">{row.notificationName}</Td>
+                <Td column = "qualification" >{row.qualification}</Td>
+                <Td column = "tags" >{row.tags}</Td>
+              </Tr>
+            )
+          })}
+
+
+          </Table>
 
           < AdmissionModal / >
 
 
           < /div>
 
-      );
+      )
     }
   }
 }

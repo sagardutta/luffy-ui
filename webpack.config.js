@@ -13,7 +13,11 @@ module.exports = {
     loaders: [{
       exclude: /node_modules/,
       loader: 'babel'
-    }]
+    },
+    {
+                test: /\.css$/,
+                loader: "style!css"
+            }]
   },
   resolve: {
     extensions: ['', '.js', '.jsx']
@@ -23,6 +27,11 @@ module.exports = {
     contentBase: './'
   },
 
+  resolve: {
+         alias: {
+             "ag-grid-root" : __dirname + "/node_modules/ag-grid"
+         }
+     },
   plugins: [
     new webpack.DefinePlugin({
     'process.env.NODE_ENV': '"production"'

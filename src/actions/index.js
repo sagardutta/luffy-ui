@@ -3,7 +3,7 @@ import axios from 'axios';
 export const SEARCH_TAG= 'SEARCH_TAG';
 export const CREATE_ADMISSION = 'CREATE_ADMISSION';
 export const NEXT_PAGE='NEXT_PAGE';
-export const EDIT_ENTRY='EDIT_ENTRY';
+export const EDIT_ROW='EDIT_ROW';
 export const UPDATE_ADMISSION = 'UPDATE_ADMISSION';
 export const DELETE_ADMISSION = 'DELETE_ADMISSION';
 export const SELECT_ROW = 'SELECT_ROW';
@@ -70,12 +70,20 @@ export function deleteAdmission(id){
 
 }
 
+export function editEntry(result){
 
-export function editEntry(id){
-  const request = axios.get(`${ROOT_URL}/${id}`)
   return{
-    type:EDIT_ENTRY,
-    payload: request
+    type:EDIT_ROW,
+    payload: result
+  }
+}
+
+
+export function editRow(result){
+
+  return{
+    type:EDIT_ROW,
+    payload: result
   }
 }
 

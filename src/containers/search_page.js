@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {searchTag, nextPageOfResults} from '../actions/index';
 import {bindActionCreators} from 'redux';
-import SearchResults from './search_results';
+import SearchResults from './search-results-10';
 import {Link} from 'react-router';
 
 class SearchPage extends Component{

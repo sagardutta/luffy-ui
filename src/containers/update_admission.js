@@ -13,7 +13,7 @@ import {
   Link
 } from 'react-router';
 
-export const fields = ['notificationName','qualification','age','applicationProcedure','selectionProcess','source','lastDate','notificationDate','linkToSource','duration','contactDetails','tags','entranceExamDate','requiredCertificates','questionPaperLanguage'];
+export const fields = ['notificationName','qualification','age','applicationProcedure','selectionProcess','source','lastDate','notificationDate','duration','contactDetails','tags','entranceExamDate','requiredCertificates','questionPaperLanguages'];
 
  class UpdateAdmission extends Component{
 
@@ -44,7 +44,7 @@ static contextTypes = {
   render(){
 
     const{
-      fields :{notificationName,qualification,age,applicationProcedure,selectionProcess,source,lastDate,notificationDate,linkToSource,duration,contactDetails,tags,entranceExamDate,requiredCertificates,questionPaperLanguage},
+      fields :{notificationName,qualification,age,applicationProcedure,selectionProcess,source,lastDate,notificationDate,duration,contactDetails,tags,entranceExamDate,requiredCertificates,questionPaperLanguages},
       handleSubmit,
       resetForm,
       submitting
@@ -63,7 +63,6 @@ static contextTypes = {
     <div className="form-group"><label>Source</label><div><input className="form-control" type="text" placeholder="Source" {...source}/></div></div>
     <div className="form-group"><label>Last Date</label><div><input className="form-control" type="date" placeholder="Last Date" {...lastDate}/></div></div>
     <div className="form-group"><label>Notification Date</label><div><input className="form-control" type="date" placeholder="Notification Date" {...notificationDate}/></div></div>
-    <div className="form-group"><label>Link ToSource</label><div><input className="form-control" type="text" placeholder="Link ToSource" {...linkToSource}/></div></div>
     <div className="form-group"><label>Duration</label><div><input className="form-control" type="text" placeholder="Duration" {...duration}/></div></div>
     <div className="form-group"><label>Contact Details</label><div><input className="form-control" type="text" placeholder="Contact Details" {...contactDetails}/></div></div>
     <div className="form-group">
@@ -72,9 +71,9 @@ static contextTypes = {
       {tags.error}
     </div>
     </div>
-    <div className="form-group"><label>Entrance ExamDate</label><div><input className="form-control" type="date" placeholder="Entrance ExamDate" {...entranceExamDate}/></div></div>
+    <div className="form-group"><label>Entrance Exam Date</label><div><input className="form-control" type="date" placeholder="Entrance ExamDate" {...entranceExamDate}/></div></div>
     <div className="form-group"><label>Required Certificates</label><div><input className="form-control" type="text" placeholder="Required Certificates" {...requiredCertificates}/></div></div>
-
+    <div className="form-group"><label>Question Paper Languages</label><div><input className="form-control" type="text" placeholder="Question Paper Languages" {...questionPaperLanguages}/></div></div>
 
 
 <div>
@@ -103,7 +102,7 @@ const  errors = {};
 }
 
 function mapStateToProps(state) {
-  console.log(state.selectedRow);
+
   let selectedAdmission = state.selectedRow;
   if (selectedAdmission.lastDate) {
     selectedAdmission.lastDate = selectedAdmission.lastDate.split('T')[0];
@@ -113,9 +112,13 @@ function mapStateToProps(state) {
     selectedAdmission.notificationDate = selectedAdmission.notificationDate.split('T')[0];
   }
 
+  if (selectedAdmission.entranceExamDate) {
+    selectedAdmission.entranceExamDate = selectedAdmission.entranceExamDate.split('T')[0];
+  }
 
+console.log(selectedAdmission);
   return {
-    initialValues: state.selectedRow,
+    initialValues: selectedAdmission,
     _id: state.selectedRow._id
   };
 }
