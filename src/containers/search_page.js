@@ -74,7 +74,7 @@ class SearchPage extends Component{
       <div className="col-md-8">
       <label className="text-center">Page {this.props.searchResults.page}</label>
       </div>
-      <input  type="button" className="btn btn-primary col-md-2" value="Next Page" disabled={ this.props.searchResults.page == this.props.searchResults.pages}  onClick={this.nextPageOfResults(1)}/>
+      <input  type="button" className="btn btn-primary col-md-2"  value="Next Page" disabled={ this.props.searchResults.page == this.props.searchResults.pages}  onClick={this.nextPageOfResults(1)}/>
 
       </div>
        </div>
@@ -82,6 +82,8 @@ class SearchPage extends Component{
   }
 
 }
+
+
 
 function mapDispatchToProps(dispatch){
   return bindActionCreators({searchTag, nextPageOfResults}, dispatch);

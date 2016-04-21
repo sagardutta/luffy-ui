@@ -31,6 +31,12 @@ static contextTypes = {
        if( props.tags.constructor === String ){
           props.tags = props.tags.split(',');
        }
+       if( props.questionPaperLanguages.constructor === String ){
+          props.questionPaperLanguages = props.questionPaperLanguages.split(',');
+       }
+       if( props.requiredCertificates.constructor === String ){
+          props.requiredCertificates = props.requiredCertificates.split(',');
+       }
        this.props.updateAdmission(props, this.props._id)
            .then(() => {
 

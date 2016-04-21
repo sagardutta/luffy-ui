@@ -102,7 +102,10 @@ viewRowCellRenderer(params){
 
 dateRenderer(params){
   params = params.params;
-  let dateValue = params.data[params.colDef.field].split('T')[0];
+  let dateValue;
+  if (params.data[params.colDef.field]){
+      dateValue = params.data[params.colDef.field].split('T')[0];
+  }
   return (<span>{dateValue}</span>);
 }
 
@@ -128,14 +131,14 @@ dateRenderer(params){
           {headerName:"Notification", field:"notificationName",width: 150, pinned: true,editable: false},
           {headerName:"Qualification", field:"qualification" ,width: 150 , pinned: true, editable: false},
           {headerName:"Notification Date", field:"notificationDate" ,width: 150 , pinned: true, cellRenderer: reactCellRendererFactory(this.dateRenderer)},
-          {headerName:"Tags", field:"tags" ,width: 150 , pinned: true,editable: false, newValueHandler: this.listCellValueChanged},
+          {headerName:"Last Date", field:"lastDate" ,width: 150 , pinned: true, cellRenderer: reactCellRendererFactory(this.dateRenderer)},
           {headerName:"Edit", field:"_id" ,width: 60 , pinned: true, cellRenderer: reactCellRendererFactory(this.editRowCellRenderer) },
           {headerName:"View", field:"__v" ,width: 60 , pinned: true,  cellRenderer: reactCellRendererFactory(this.viewRowCellRenderer)}
         ];
 
         return (
           <div >
-            <div style={{width:'100%', height:'500px'}} className="ag-blue">
+            <div style={{width:'80%', height:'300px'}} className="ag-blue">
 
           <AgGridReact
                      // gridOptions is optional - it's possible to provide

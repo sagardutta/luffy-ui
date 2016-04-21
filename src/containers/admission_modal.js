@@ -99,6 +99,11 @@ this.props.selectedRow.source
 } < /td> < /tr >
 
 < tr >
+  < td > Duration < /td> < td > {
+this.props.selectedRow.duration
+} < /td> < /tr >
+
+< tr >
   < td > Last Date < /td> < td > < Time value = {
 this.props.selectedRow.lastDate
 }
